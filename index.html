@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <title>Quote Image Generator</title>
+  </head>
+  <body class="background-image">
+    <header><h1>Quotation Generator</h1></header>
+    <main class="container">
+      <!-- Section for Generated Image -->
+      <section aria-label="Generated Image" class="generated-image">
+        <img
+          src="Images/jasper-gribble-TTExgxV06KA-unsplash.jpg"
+          alt="Generated Quote Image"
+          class="generated-image"
+        />
+      </section>
+
+      <!-- Form for Keyword Input and Generate Button -->
+      <section aria-label="Image Generator Controls">
+        <div class="input-group">
+          <label for="keyword" hidden>Keyword</label>
+          <input
+            type="text"
+            id="keyword"
+            name="keyword"
+            placeholder="Enter keyword"
+            aria-label="Keyword"
+          />
+          <button type="button" aria-label="Generate Image">Generate</button>
+        </div>
+      </section>
+
+      <!-- Section for Previous Generated Images -->
+      <section aria-label="Previously Generated Images" class="previous-images">
+        <img
+          src="Images/agnieszka-stankiewicz-S_A_x61vbEk-unsplash.jpg"
+          alt="Previously generated quote image 1"
+        />
+        <img
+          src="Images/pavel-moiseev-8w3hXgLiL8w-unsplash.jpg"
+          alt="Previously generated quote image 2"
+        />
+        <img
+          src="Images/pavel-moiseev-gqipBEs8exk-unsplash.jpg"
+          alt="Previously generated quote image 3"
+        />
+        <img
+          src="Images/agnieszka-stankiewicz-S_A_x61vbEk-unsplash.jpg"
+          alt="Previously generated quote image 4"
+        />
+      </section>
+    </main>
+  </body>
+</html>

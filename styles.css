@@ -1,0 +1,82 @@
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-image: url("Images/22327195_memphis_geometric_pattern1_grey.svg"); /* Path to your seamless pattern image */
+  background-repeat: repeat; /* Ensures the pattern repeats both horizontally and vertically */
+  background-size: auto; /* Keeps the original size of the image */
+  background-position: top left; /* Aligns the pattern to the top-left corner */
+}
+
+h1 {
+  font-size: 48px;
+  font-weight: 800;
+  font-family: "Roboto";
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center vertically */
+  justify-content: center;
+}
+
+.generated-image {
+  width: 100%;
+  max-width: 440px;
+  display: inline-block;
+}
+
+.input-group {
+  display: flex;
+  margin-top: 55px;
+  margin-bottom: 55px;
+  font-family: "Roboto";
+  gap: 5px;
+}
+
+#keyword {
+  width: 100%;
+  padding: 12px 15px;
+  font-size: 16px;
+  border: 2px solid #ccc; /* Default border */
+  border-radius: 10px; /* Rounded corners */
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s; /* Smooth transition for border and shadow */
+}
+
+/* Change border color and add shadow on focus */
+#keyword:focus {
+  border-color: #007bff; /* Blue color when focused */
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.3); /* Subtle blue shadow */
+}
+
+/* Placeholder styling */
+#keyword::placeholder {
+  color: #999; /* Light gray color for placeholder text */
+  font-style: italic; /* Italic style for placeholder text */
+}
+
+button {
+  border: none;
+  border-radius: 10px;
+  padding: 15px;
+}
+
+button:hover {
+  cursor: pointer;
+}
+.previous-images {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.previous-images img {
+  width: 210px;
+  height: auto;
+}
