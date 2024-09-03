@@ -1,0 +1,4 @@
+# OS-specific files (if applicable)
+*.DS_Store
+*.AppleDouble
+*.LSOverride
