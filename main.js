@@ -28,33 +28,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       // // Create a canvas element
       const canvas = document.createElement("canvas");
       const ctx = canvas.getContext("2d");
-
-      // // Set canvas size to match image
-      // canvas.width = img.width;
-      // canvas.height = img.height;
-
-      // // Draw the image on the canvas
-      // ctx.drawImage(img, 0, 0);
-
-      // // Set the text style
-      // ctx.font = "bold 48px Arial"; // Larger font size
-      // ctx.fillStyle = "white"; // Text color
-      // ctx.textAlign = "center";
-      // ctx.textBaseline = "middle";
-      // ctx.lineWidth = 4; // Text outline width
-
-      // // Add a text shadow for better readability
-      // ctx.shadowColor = "rgba(0, 0, 0, 0.7)";
-      // ctx.shadowBlur = 10;
-
-      // // Calculate text position
-      // const x = canvas.width / 2;
-      // const y = canvas.height / 2;
-
-      // // Add the quote text to the canvas
-      // ctx.fillText(quoteText, x, y); // Centered position for quote
-      // ctx.font = "italic 24px Arial"; // Smaller font size for author
-      // ctx.fillText(`- ${quoteAuthor}`, x, y + 60); // Adjust y for author below quote
+      console.log("Loaded");
 
       const aspectRatio = img.width / img.height;
       let newWidth, newHeight;
@@ -83,6 +57,74 @@ document.addEventListener("DOMContentLoaded", async () => {
         1080,
         1080
       );
+
+      // Step 2: Add a semi-transparent dark layer
+      ctx.fillStyle = "rgba(0, 0, 0, 0.5)"; // Black with 50% opacity
+      ctx.fillRect(0, 0, canvas.width, canvas.height); // Covers the entire canvas
+
+      // Define the margins
+      const margin = 130; // You can adjust the margin
+      const maxWidth = canvas.width - margin * 2; // Width available for text
+      const maxHeight = canvas.height - margin * 2; // Height available for text
+
+      // Add text shadow for better visibility
+      ctx.shadowColor = "rgba(0, 0, 0, 0.7)"; // Shadow color
+      ctx.shadowBlur = 10; // Blur level of the shadow
+      ctx.shadowOffsetX = 5; // Horizontal shadow offset
+      ctx.shadowOffsetY = 5; // Vertical shadow offset
+
+      // Dynamically adjust text size
+      drawDynamicText(ctx, quoteText, margin, margin, maxWidth, maxHeight);
+
+      function drawDynamicText(ctx, quoteText, x, y, maxWidth, maxHeight) {
+        let fontSize = 150; // Starting font size
+
+        // Loop to find the maximum font size that fits in the margins
+        do {
+          ctx.font = `${fontSize}px Oswald`;
+          var lines = wrapText(ctx, quoteText, maxWidth);
+          fontSize--;
+          console.log(`Fontsize: ${fontSize}`);
+        } while (fontSize > 0 && lines.length * fontSize * 1.2 > maxHeight);
+
+        // Center the text vertically within the available height
+        let lineHeight = fontSize * 1.2;
+        let totalHeight = lines.length * lineHeight;
+        let startY = (canvas.height - totalHeight) / 2;
+
+        ctx.textAlign = "center";
+        ctx.fillStyle = "white";
+
+        // Draw the text line by line
+        lines.forEach((line, index) => {
+          ctx.fillText(
+            line,
+            canvas.width / 2,
+            startY + (index + 1) * lineHeight
+          );
+        });
+      }
+
+      // Function to wrap text
+      function wrapText(ctx, quoteText, maxWidth) {
+        const words = quoteText.split(" ");
+        let lines = [];
+        let currentLine = words[0];
+
+        for (let i = 1; i < words.length; i++) {
+          const word = words[i];
+          const width = ctx.measureText(currentLine + " " + word).width;
+          if (width < maxWidth) {
+            currentLine += " " + word;
+          } else {
+            lines.push(currentLine);
+            currentLine = word;
+          }
+        }
+        lines.push(currentLine);
+        return lines;
+      }
+
       // Convert canvas to data URL
       const dataURL = canvas.toDataURL("image/png");
 
