@@ -1,9 +1,12 @@
-document.addEventListener("DOMContentLoaded", async () => {
+const button = document.getElementById("generate-button");
+
+button.addEventListener("click", async () => {
   const imageUrl =
     "https://api.unsplash.com/photos/random?client_id=Kag9FomqzMz9Ltwlsh86xZGC4lp4GaL_21FgN2BphtU&w=1800&h=1800";
-  const quoteUrl = "https://api.quotable.io/random";
+  const quoteUrl = "https://quotes-api-self.vercel.app/quote";
 
   try {
+    console.log("kurva");
     // Fetch the image URL from Unsplash
     const imageResponse = await fetch(imageUrl);
     const imageData = await imageResponse.json();
@@ -12,12 +15,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Fetch the quote from Quotable
     const quoteResponse = await fetch(quoteUrl);
     const quoteData = await quoteResponse.json();
-    const quoteText = quoteData.content;
+    const quoteText = quoteData.quote;
+    // const quoteText = "Szopjad le a fekelyes kurva anyadat!";
     const quoteAuthor = quoteData.author;
 
     console.log("Image URL:", imageSrc); // Debugging
-    console.log("Quote:", quoteText); // Debugging
-    console.log("Author:", quoteAuthor); // Debugging
 
     // Create a new image element
     const img = new Image();
@@ -32,7 +34,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       const aspectRatio = img.width / img.height;
       let newWidth, newHeight;
-
+      // Resizing the image that the sorter dimension will be 1080px and the other dimension will be resized dinamically by the calculated ascpect ratio
       if (img.width < img.height) {
         newWidth = 1080;
         newHeight = 1080 / aspectRatio;
@@ -59,7 +61,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       );
 
       // Step 2: Add a semi-transparent dark layer
-      ctx.fillStyle = "rgba(0, 0, 0, 0.5)"; // Black with 50% opacity
+      ctx.fillStyle = "rgba(0, 0, 0, 0.2)"; // Black with 50% opacity
       ctx.fillRect(0, 0, canvas.width, canvas.height); // Covers the entire canvas
 
       // Define the margins
@@ -89,6 +91,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         // Center the text vertically within the available height
         let lineHeight = fontSize * 1.2;
+        // let lineHeight = fontSize;
         let totalHeight = lines.length * lineHeight;
         let startY = (canvas.height - totalHeight) / 2;
 
@@ -102,6 +105,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             canvas.width / 2,
             startY + (index + 1) * lineHeight
           );
+          // lineHeight = fontSize * 1.2;
         });
       }
 
