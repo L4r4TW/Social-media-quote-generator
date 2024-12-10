@@ -1,8 +1,13 @@
 const button = document.getElementById("generate-button");
 
 button.addEventListener("click", async () => {
-  const imageUrl =
-    "https://api.unsplash.com/photos/random?client_id=Kag9FomqzMz9Ltwlsh86xZGC4lp4GaL_21FgN2BphtU&w=1800&h=1800";
+  // Get the input element by its ID
+  const inputElement = document.getElementById("keyword");
+
+  // Get the value of the input field
+  const inputValue = inputElement.value;
+
+  const imageUrl = `https://api.unsplash.com/photos/random?query=${inputValue}&client_id=Kag9FomqzMz9Ltwlsh86xZGC4lp4GaL_21FgN2BphtU&w=1800&h=1800`;
   const quoteUrl = "https://quotes-api-self.vercel.app/quote";
 
   try {
@@ -61,7 +66,7 @@ button.addEventListener("click", async () => {
       );
 
       // Step 2: Add a semi-transparent dark layer
-      ctx.fillStyle = "rgba(0, 0, 0, 0.2)"; // Black with 50% opacity
+      ctx.fillStyle = "rgba(0, 0, 0, 0.4)"; // Black with 50% opacity
       ctx.fillRect(0, 0, canvas.width, canvas.height); // Covers the entire canvas
 
       // Define the margins
