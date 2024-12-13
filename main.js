@@ -10,6 +10,8 @@ button.addEventListener("click", async () => {
   const imageUrl = `https://api.unsplash.com/photos/random?query=${inputValue}&client_id=Kag9FomqzMz9Ltwlsh86xZGC4lp4GaL_21FgN2BphtU&w=1800&h=1800`;
   const quoteUrl = "https://quotes-api-self.vercel.app/quote";
 
+  const cacheBar = document.getElementById("previous-images");
+
   try {
     console.log("kurva");
     // Fetch the image URL from Unsplash
@@ -145,6 +147,24 @@ button.addEventListener("click", async () => {
         document.body.appendChild(imgElement);
       }
       imgElement.src = dataURL;
+
+      addToCacheBar(dataURL);
+
+      function addToCacheBar(imageUrl) {
+        console.log("FASZ");
+        // Create a new image element
+        const newImage = document.createElement("img");
+        newImage.src = imageUrl;
+
+        // Add the new image to the beginning of the cache bar
+        cacheBar.prepend(newImage);
+
+        // Check if the cache bar has more than 4 images
+        if (cacheBar.children.length > 4) {
+          // Remove the oldest image (last child)
+          cacheBar.removeChild(cacheBar.lastChild);
+        }
+      }
     };
 
     img.onerror = (error) => {

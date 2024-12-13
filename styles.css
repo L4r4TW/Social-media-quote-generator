@@ -4,7 +4,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 100%;
   margin: 0;
   background-image: url("Images/22327195_memphis_geometric_pattern1_grey.svg"); /* Path to your seamless pattern image */
   background-repeat: repeat; /* Ensures the pattern repeats both horizontally and vertically */
@@ -13,7 +13,8 @@ body {
 }
 
 h1 {
-  font-size: 48px;
+  text-align: center;
+  font-size: 3rem;
   font-weight: 800;
   font-family: "Roboto";
 }
@@ -78,7 +79,17 @@ button:hover {
   gap: 20px;
 }
 
-.previous-images img {
-  width: 210px;
-  height: auto;
+#previous-images {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  padding: 0 2em 2em 2em;
+}
+
+#previous-images img {
+  flex: 1 1 calc(25% - 10px); /* 4 images in a row with spacing */
+  max-width: 300px; /* Ensure they don't grow too large */
+  min-width: 300px; /* Minimum width before wrapping happens */
+  height: auto; /* Maintain aspect ratio */
 }
