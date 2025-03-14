@@ -63,7 +63,7 @@ Welcome to the **Social Media Quote Generator**! This application allows users t
 
 ![Desktop view](Images/Screenshots/Screenshot_2.png)
 
-### About Page
+### Mobile view
 
 ![Mobile view](Images/Screenshots/Screenshot_1.png)
 
